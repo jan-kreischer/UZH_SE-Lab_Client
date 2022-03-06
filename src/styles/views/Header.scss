@@ -1,6 +1,10 @@
 @import 'styles/theme';
 
+.navbar {
+  margin-bottom: 4px;
+}
 .header {
+
   &.container {
     @include center;
   }

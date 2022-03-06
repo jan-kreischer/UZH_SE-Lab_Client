@@ -1,8 +1,11 @@
 import React from "react";
 import {ReactLogo} from "components/ui/ReactLogo";
+//import {Link} from 'react-router-dom';
 import PropTypes from "prop-types";
 import {Container, Navbar, Nav } from "react-bootstrap";
 import "styles/views/Header.scss";
+import {Link, useHistory} from 'react-router-dom';
+import {Button} from "../ui/Button";
 
 /**
  * This is an example of a Functional and stateless component (View) in React. Functional components are not classes and thus don't handle internal state changes.
@@ -18,10 +21,37 @@ import "styles/views/Header.scss";
     <ReactLogo width="60px" height="60px"/>
 </div>*/
 
-const Header = props => (
+const NavbarRight = () => {
+    const history = useHistory();
+
+    const logout = () => {
+        localStorage.removeItem('token');
+        history.push('/');
+    }
+
+    if (!localStorage.getItem("token")) {
+        return <Nav className="justify-content-end" style={{ width: "100%" }}><Nav.Link href="/login">Login</Nav.Link><Nav.Link href="/register">Register</Nav.Link></Nav>
+    } else {
+        return <Nav className="justify-content-end" style={{ width: "100%" }}><Nav.Link><Button
+            width="100%"
+            onClick={() => logout()}
+        >
+            Logout
+        </Button></Nav.Link></Nav>
+    }
+};
+
+const Header = props => {
+    const history = useHistory();
+
+const logout = () => {
+    localStorage.removeItem('token');
+    history.push('/login');
+}
+    return (
     <Navbar bg="primary" variant="dark">
         <Container>
-            <Navbar.Brand href="#home">
+            <Navbar.Brand href="/">
                 <ReactLogo fill="white" width="42px" height="42px"/>
             </Navbar.Brand>
             <Navbar.Toggle />
@@ -31,13 +61,13 @@ const Header = props => (
                 <Nav.Link href="/profile">Profile</Nav.Link>
                 </Nav>
                 <Nav className="justify-content-end" style={{ width: "100%" }}>
-                    <Nav.Link href="/login">Login</Nav.Link>
-                    <Nav.Link href="/register">Register</Nav.Link>
+                    <NavbarRight/>
                 </Nav>
             </Navbar.Collapse>
         </Container>
     </Navbar>
 );
+}
 
 Header.propTypes = {
   height: PropTypes.string

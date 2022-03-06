@@ -1,9 +1,13 @@
 @import 'styles/theme';
 
+.error {
+  color: #ffffff;
+}
+
 .register {
   &.container {
     margin-top: 2em;
-    min-height: 400px;
+    min-height: 300px;
     /* we include the center mixin defined in _theme.scss and save three duplicate lines :) */
     @include center;
     flex-direction: column;
@@ -42,7 +46,6 @@
   &.label {
     color: $textColor;
     margin-bottom: 10px;
-    text-transform: uppercase;
     font-weight: 300;
   }
   &.button-container {

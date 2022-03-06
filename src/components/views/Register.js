@@ -15,14 +15,15 @@ specific components that belong to the main one in the same file.
  */
 const FormField = props => {
     return (
-        <div className="login field">
-            <label className="login label">
+        <div className="register field">
+            <label className="register label">
                 {props.label}
             </label>
             <input
-                className="login input"
+                className="register input"
                 placeholder="enter here.."
                 value={props.value}
+                type={props.type}
                 onChange={e => props.onChange(e.target.value)}
             />
         </div>
@@ -37,14 +38,15 @@ FormField.propTypes = {
 
 const Register = props => {
     const history = useHistory();
-    const [username, setUsername] = useState(null);
     const [name, setName] = useState(null);
+    const [username, setUsername] = useState(null);
     const [password, setPassword] = useState(null);
+    const [errorMessage, setErrorMessage] = useState("");
 
 
     const doRegister = async () => {
         try {
-            const requestBody = JSON.stringify({username, name, password});
+            const requestBody = JSON.stringify({name, username, password});
             const response = await api.post('/users', requestBody);
 
             // Get the returned user and update a new object.
@@ -53,10 +55,11 @@ const Register = props => {
             // Store the token into the local storage.
             localStorage.setItem('token', user.token);
 
-            // Login successfully worked --> navigate to the route /game in the GameRouter
-            history.push(`/game`);
+            // register successfully worked --> navigate to the route /game in the GameRouter
+            history.push(`/users`);
         } catch (error) {
-            alert(`Something went wrong during the login: \n${handleError(error)}`);
+            setErrorMessage(error.response.data.message);
+            //alert(`Something went wrong during the registration: \n${handleError(error)}`);
         }
     };
 
@@ -64,22 +67,26 @@ const Register = props => {
         <BaseContainer>
             <div className="register container">
                 <div className="register form">
+                    {errorMessage && (
+                        <p className="error"> {errorMessage} </p>
+                    )}
                     <FormField
-                        label="username"
-                        value={username}
-                        onChange={un => setUsername(un)}
-                    />
-                    <FormField
-                        label="name"
+                        label="Name"
                         value={name}
                         onChange={un => setName(un)}
                     />
                     <FormField
-                        label="password"
+                        label="Username"
+                        value={username}
+                        onChange={un => setUsername(un)}
+                    />
+                    <FormField
+                        label="Password"
                         value={password}
+                        type={"password"}
                         onChange={n => setPassword(n)}
                     />
-                    <div className="login button-container">
+                    <div className="register button-container">
                         <Button
                             disabled={!username || !password}
                             width="100%"

@@ -15,9 +15,8 @@ const Player = ({user}) => (
     <Link to={userProfileUrl(user)}>
         <span className="card" style={{"display": "block"}}>
           <div className="player container">
-            <div className="player username">{user.username}</div>
             <div className="player name">{user.name}</div>
-            <div className="player id">id: {user.id}</div>
+            <div className="player username">(@{user.username})</div>
           </div>
         </span>
     </Link>
@@ -27,7 +26,7 @@ Player.propTypes = {
   user: PropTypes.object
 };
 
-const Game = () => {
+const UserList = () => {
   // use react-router-dom's hook to access the history
   const history = useHistory();
 
@@ -107,4 +106,4 @@ const Game = () => {
   );
 }
 
-export default Game;
+export default UserList;
