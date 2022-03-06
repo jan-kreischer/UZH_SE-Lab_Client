@@ -4,6 +4,7 @@ import {Spinner} from 'components/ui/Spinner';
 import {Button} from 'components/ui/Button';
 import {Link, useHistory, useParams} from 'react-router-dom';
 import BaseContainer from "components/ui/BaseContainer";
+import {FormField} from "components/ui/FormField";
 import PropTypes from "prop-types";
 import "styles/views/Game.scss";
 
@@ -12,14 +13,13 @@ const userProfileUrl = (user) => {
 }
 
 const User = ({user}) => (
-    <span className="card" style={{"display": "block"}}>
-      <div className="profile container">
-          <div className="profile name">Name: {user.name}</div>
-        <div className="profile username">Username: {user.username}</div>
-          <div className="profile name">Status: {user.status}</div>
-        <div className="profile id">Id: {user.id}</div>
-      </div>
-    </span>
+    <div>
+        <FormField label="Name" value={user.name}/>
+        <FormField label="Username" value={user.username}/>
+        <FormField label="Status" value={user.status}/>
+        <FormField label="Birth Date" value={user.status}/>
+        <FormField label="Creation Date" value={user.status}/>
+    </div>
 );
 
 User.propTypes = {

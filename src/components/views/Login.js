@@ -63,6 +63,7 @@ const Login = props => {
     <BaseContainer>
       <div className="login container">
         <div className="login form">
+          <h2 className="site-title">Login</h2>
           <FormField
             label="Username"
             value={username}
@@ -80,7 +81,7 @@ const Login = props => {
               width="100%"
               onClick={() => doLogin()}
             >
-              Login
+              Submit
             </Button>
           </div>
         </div>

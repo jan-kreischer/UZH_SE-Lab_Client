@@ -67,6 +67,7 @@ const Register = props => {
         <BaseContainer>
             <div className="register container">
                 <div className="register form">
+                    <h2 className="site-title">Register</h2>
                     {errorMessage && (
                         <p className="error"> {errorMessage} </p>
                     )}
@@ -92,7 +93,7 @@ const Register = props => {
                             width="100%"
                             onClick={() => doRegister()}
                         >
-                            Register
+                            Submit
                         </Button>
                     </div>
                 </div>

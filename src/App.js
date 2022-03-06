@@ -1,16 +1,14 @@
 import Header from "components/views/Header";
 import AppRouter from "components/routing/routers/AppRouter";
+import {BrowserRouter, Redirect, Route, Switch} from "react-router-dom";
 
-/**
- * Happy coding!
- * React Template by Lucas Pelloni
- * Overhauled by Kyrill Hux
- */
 const App = () => {
   return (
     <div>
-      <Header height="100"/>
-      <AppRouter/>
+        <BrowserRouter>
+            <Header height="100"/>
+            <AppRouter/>
+        </BrowserRouter>
     </div>
   );
 };

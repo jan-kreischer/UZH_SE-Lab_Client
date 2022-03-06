@@ -4,8 +4,9 @@ import {ReactLogo} from "components/ui/ReactLogo";
 import PropTypes from "prop-types";
 import {Container, Navbar, Nav } from "react-bootstrap";
 import "styles/views/Header.scss";
-import {Link, useHistory} from 'react-router-dom';
+import {Link, withRouter, useHistory} from 'react-router-dom';
 import {Button} from "../ui/Button";
+
 
 /**
  * This is an example of a Functional and stateless component (View) in React. Functional components are not classes and thus don't handle internal state changes.
@@ -16,12 +17,7 @@ import {Button} from "../ui/Button";
  * @FunctionalComponent
  */
 
-/*<div className="header container" style={{height: props.height}}>
-    <h1 className="header title"></h1>
-    <ReactLogo width="60px" height="60px"/>
-</div>*/
-
-const NavbarRight = () => {
+const Header = props => {
     const history = useHistory();
 
     const logout = () => {
@@ -29,25 +25,19 @@ const NavbarRight = () => {
         history.push('/');
     }
 
-    if (!localStorage.getItem("token")) {
-        return <Nav className="justify-content-end" style={{ width: "100%" }}><Nav.Link href="/login">Login</Nav.Link><Nav.Link href="/register">Register</Nav.Link></Nav>
-    } else {
-        return <Nav className="justify-content-end" style={{ width: "100%" }}><Nav.Link><Button
-            width="100%"
-            onClick={() => logout()}
-        >
-            Logout
-        </Button></Nav.Link></Nav>
+    const show_navbar_right = props => {
+        if (!localStorage.getItem("token")) {
+            return <Nav className="justify-content-end" style={{ width: "100%" }}><Nav.Link href="/login">Login</Nav.Link><Nav.Link href="/register">Register</Nav.Link></Nav>
+        } else {
+            return <Nav className="justify-content-end" style={{ width: "100%" }}><Nav.Link><Button
+                width="100%"
+                onClick={() => logout()}
+            >
+                Logout
+            </Button></Nav.Link></Nav>
+        }
     }
-};
 
-const Header = props => {
-    const history = useHistory();
-
-const logout = () => {
-    localStorage.removeItem('token');
-    history.push('/login');
-}
     return (
     <Navbar bg="primary" variant="dark">
         <Container>
@@ -61,7 +51,7 @@ const logout = () => {
                 <Nav.Link href="/profile">Profile</Nav.Link>
                 </Nav>
                 <Nav className="justify-content-end" style={{ width: "100%" }}>
-                    <NavbarRight/>
+                    {show_navbar_right()}
                 </Nav>
             </Navbar.Collapse>
         </Container>
@@ -76,4 +66,4 @@ Header.propTypes = {
 /**
  * Don't forget to export your component!
  */
-export default Header;
+export default withRouter(Header);

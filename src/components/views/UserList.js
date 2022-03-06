@@ -12,14 +12,12 @@ const userProfileUrl = (user) => {
 }
 
 const Player = ({user}) => (
-    <Link to={userProfileUrl(user)}>
-        <span className="card" style={{"display": "block"}}>
-          <div className="player container">
-            <div className="player name">{user.name}</div>
-            <div className="player username">(@{user.username})</div>
-          </div>
-        </span>
-    </Link>
+    <li>
+        • {user.id} {user.name} &nbsp;
+    (<Link to={userProfileUrl(user)}>
+         @{user.username}
+    </Link>)
+    </li>
 );
 
 Player.propTypes = {
@@ -88,12 +86,6 @@ const UserList = () => {
             <Player user={user} key={user.id}/>
           ))}
         </ul>
-        <Button
-          width="100%"
-          onClick={() => logout()}
-        >
-          Logout
-        </Button>
       </div>
     );
   }

@@ -1,11 +1,11 @@
 import {BrowserRouter, Redirect, Route, Switch} from "react-router-dom";
 import {GameGuard} from "components/routing/routeProtectors/GameGuard";
-import GameRouter from "components/routing/routers/GameRouter";
 import {LoginGuard} from "components/routing/routeProtectors/LoginGuard";
 import Login from "components/views/Login";
 import Register from "components/views/Register";
 import UserProfile from "../../views/UserProfile";
 import UserList from "components/views/UserList";
+import Header from "../../views/Header";
 
 /**
  * Main router of your application.
@@ -18,7 +18,6 @@ import UserList from "components/views/UserList";
  */
 const AppRouter = () => {
   return (
-    <BrowserRouter>
       <Switch>
         <Route exact path="/login">
           <LoginGuard>
@@ -42,7 +41,6 @@ const AppRouter = () => {
           <Redirect to="/users"/>
         </Route>
       </Switch>
-    </BrowserRouter>
   );
 };
 
