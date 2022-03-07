@@ -49,9 +49,16 @@ const Register = props => {
             const requestBody = JSON.stringify({name, username, password});
             const response = await api.post('/users', requestBody);
 
+            if(undefined) {
+                console.log("Undefined equals true")
+            }
+            else {
+                console.log("Undefined equals false")
+            }
             // Get the returned user and update a new object.
             const user = new User(response.data);
 
+            console.log("Token: ", user.token)
             // Store the token into the local storage.
             localStorage.setItem('token', user.token);
 
