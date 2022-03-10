@@ -1,18 +1,18 @@
 import React from "react";
+import DatePicker from "react-datepicker";
 
-export const FormField = props => {
+export const DatePickerField = props => {
     return (
         <div className="login field">
             <label className="login label">
                 {props.label}
             </label>
-            <input
+            <DatePicker
+                selected={props.value}
                 className="login input"
                 placeholder="enter here.."
-                disabled={props.disabled}
-                value={props.value}
-                type={props.type}
                 onChange={e => props.onChange(e.target.value)}
+                disabled={props.disabled}
             />
         </div>
     );

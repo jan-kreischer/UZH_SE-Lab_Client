@@ -7,6 +7,23 @@ import BaseContainer from "components/ui/BaseContainer";
 import {FormField} from "components/ui/FormField";
 import PropTypes from "prop-types";
 import "styles/views/Game.scss";
+//import DatePickers from "../ui/DatePickers";
+//import "@progress/kendo-theme-material/dist/all.css";
+
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
+import {DatePickerField} from "../ui/DatePickerField";
+
+// CSS Modules, react-datepicker-cssmodules.css
+// import 'react-datepicker/dist/react-datepicker-cssmodules.css';
+
+const Example = () => {
+    const [startDate, setStartDate] = useState(new Date());
+    return (
+        <DatePicker selected={startDate} onChange={(date:Date) => setStartDate(date)} />
+    );
+};
+
 
 const userProfileUrl = (user) => {
     return `/users/${user.id}`
@@ -14,11 +31,12 @@ const userProfileUrl = (user) => {
 
 const User = ({user}) => (
     <div>
-        <FormField label="Name" value={user.name}/>
-        <FormField label="Username" value={user.username}/>
-        <FormField label="Status" value={user.status}/>
-        <FormField label="Birth Date" value={user.status}/>
-        <FormField label="Creation Date" value={user.creationDate}/>
+        <FormField label="Name" value={user.name} disabled={false}/>
+        <FormField label="Username" value={user.username} disabled={true}/>
+        <FormField label="Status" value={user.status} disabled={true}/>
+        <DatePickerField label="Birth Date" value={new Date(user.birthDate)} disabled={false}/>
+        <DatePickerField label="Creation Date" value={new Date(user.creationDate)} disabled={true}/>
+
     </div>
 );
 
@@ -72,6 +90,12 @@ const UserProfile = () => {
                 <ul className="game user-list">
                     <User user={user} key={user.id}/>
                 </ul>
+                <Button
+                    width="100%"
+                    onClick={() => {return}}
+                >
+                    Update
+                </Button>
             </div>
         );
     }

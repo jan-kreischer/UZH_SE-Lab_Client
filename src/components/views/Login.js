@@ -40,6 +40,7 @@ const Login = props => {
   const history = useHistory();
   const [username, setUsername] = useState(null);
   const [password, setPassword] = useState(null);
+  const [errorMessage, setErrorMessage] = useState("");
 
   const doLogin = async () => {
     try {
@@ -51,11 +52,12 @@ const Login = props => {
 
       // Store the token into the local storage.
       localStorage.setItem('token', user.token);
+      console.log("User token: ", user.token)
 
       // Login successfully worked --> navigate to the route /game in the GameRouter
-      history.push(`/game`);
+      history.push(`/users`);
     } catch (error) {
-      alert(`Something went wrong during the login: \n${handleError(error)}`);
+        setErrorMessage(error.response.data.message);
     }
   };
 
@@ -64,6 +66,9 @@ const Login = props => {
       <div className="login container">
         <div className="login form">
           <h2 className="site-title">Login</h2>
+          {errorMessage && (
+              <p className="error"> {errorMessage} </p>
+          )}
           <FormField
             label="Username"
             value={username}
