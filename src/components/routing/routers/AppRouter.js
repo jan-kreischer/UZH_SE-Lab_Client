@@ -35,7 +35,9 @@ const AppRouter = () => {
           </GameGuard>
         </Route>
         <Route exact path="/users/:userId" component={UserProfile}>
-          <UserProfile/>
+            <GameGuard>
+                <UserProfile/>
+            </GameGuard>
         </Route>
         <Route exact path="/">
           <Redirect to="/users"/>

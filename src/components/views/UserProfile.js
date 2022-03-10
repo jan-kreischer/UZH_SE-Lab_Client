@@ -18,7 +18,7 @@ const User = ({user}) => (
         <FormField label="Username" value={user.username}/>
         <FormField label="Status" value={user.status}/>
         <FormField label="Birth Date" value={user.status}/>
-        <FormField label="Creation Date" value={user.status}/>
+        <FormField label="Creation Date" value={user.creationDate}/>
     </div>
 );
 
