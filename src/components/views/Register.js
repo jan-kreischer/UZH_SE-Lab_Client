@@ -53,7 +53,7 @@ const Register = props => {
         <BaseContainer>
             <div className="outlet container">
                 <div className="outlet form">
-                    <h2 className="outlet site-title">Register</h2>
+                    <h2 className="site-title">Register</h2>
                     {errorMessage && (
                         <p className="error"> {errorMessage} </p>
                     )}

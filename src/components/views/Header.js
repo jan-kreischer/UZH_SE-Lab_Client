@@ -6,6 +6,8 @@ import {Container, Navbar, Nav } from "react-bootstrap";
 import "styles/views/Header.scss";
 import {Link, withRouter, useHistory} from 'react-router-dom';
 import {Button} from "../ui/Button";
+import {api} from "../../helpers/api";
+import User from "../../models/User";
 
 
 /**
@@ -25,9 +27,18 @@ const Header = props => {
     const history = useHistory();
     const currentUserId = localStorage.getItem("currentUserId");
 
-    const logout = () => {
-        localStorage.removeItem('token');
-        history.push('/');
+    const logout = async () => {
+        try {
+            const currentUserId = localStorage.getItem("currentUserId");
+            const url = `/users/${currentUserId}/logout`;
+            const response = await api.put(url);
+            localStorage.removeItem('token');
+            history.push('/');
+        }
+        catch (error) {
+            alert(error.response.data.message)
+        }
+
     }
 
     const show_navbar_right = props => {

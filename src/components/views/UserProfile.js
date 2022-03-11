@@ -13,6 +13,7 @@ import "styles/views/Game.scss";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import {DatePickerField} from "../ui/DatePickerField";
+import {StatusField} from "../ui/StatusField";
 
 // CSS Modules, react-datepicker-cssmodules.css
 // import 'react-datepicker/dist/react-datepicker-cssmodules.css';
@@ -30,13 +31,12 @@ const userProfileUrl = (user) => {
 }
 
 const User = ({user}) => (
-    <div>
+    <div class="">
         <FormField label="Name" value={user.name} disabled={false}/>
         <FormField label="Username" value={user.username} disabled={true}/>
-        <FormField label="Status" value={user.status} disabled={true}/>
+        <StatusField loggedIn={user.loggedIn}/>
         <DatePickerField label="Birth Date" value={new Date(user.birthDate)} disabled={false}/>
         <DatePickerField label="Creation Date" value={new Date(user.creationDate)} disabled={true}/>
-
     </div>
 );
 
@@ -101,8 +101,8 @@ const UserProfile = () => {
 
     if (user) {
         content = (
-            <div className="game">
-                <ul className="game user-list">
+            <div className={"outlet form"}>
+                <ul className="outlet user-list">
                     <User user={user} key={user.id}/>
                 </ul>
                 {update(user.id)}
@@ -111,9 +111,11 @@ const UserProfile = () => {
     }
 
     return (
-        <BaseContainer className="game container">
-            <h2>Profile</h2>
-            {content}
+        <BaseContainer>
+            <div className="outlet container">
+                <h2>Profile</h2>
+                {content}
+            </div>
         </BaseContainer>
     );
 
