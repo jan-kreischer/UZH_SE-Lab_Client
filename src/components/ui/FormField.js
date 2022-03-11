@@ -2,12 +2,12 @@ import React from "react";
 
 export const FormField = props => {
     return (
-        <div className="login field">
-            <label className="login label">
+        <div className="outlet field">
+            <label className="outlet label">
                 {props.label}
             </label>
             <input
-                className="login input"
+                className="outlet input"
                 placeholder="enter here.."
                 disabled={props.disabled}
                 value={props.value}

@@ -3,32 +3,10 @@ import {api, handleError} from 'helpers/api';
 import User from 'models/User';
 import {useHistory} from 'react-router-dom';
 import {Button} from 'components/ui/Button';
-import 'styles/views/Login.scss';
+import 'styles/views/Register.scss';
 import BaseContainer from "components/ui/BaseContainer";
 import PropTypes from "prop-types";
-
-/*
-It is possible to add multiple components inside a single file,
-however be sure not to clutter your files with an endless amount!
-As a rule of thumb, use one file per component and only add small,
-specific components that belong to the main one in the same file.
- */
-const FormField = props => {
-  return (
-    <div className="login field">
-      <label className="login label">
-        {props.label}
-      </label>
-      <input
-        className="login input"
-        placeholder="enter here.."
-        value={props.value}
-        type={props.type}
-        onChange={e => props.onChange(e.target.value)}
-      />
-    </div>
-  );
-};
+import {FormField} from "../ui/FormField";
 
 FormField.propTypes = {
   label: PropTypes.string,
@@ -52,6 +30,7 @@ const Login = props => {
 
       // Store the token into the local storage.
       localStorage.setItem('token', user.token);
+      localStorage.setItem('currentUserId', user.id);
       console.log("User token: ", user.token)
 
       // Login successfully worked --> navigate to the route /game in the GameRouter
@@ -63,8 +42,8 @@ const Login = props => {
 
   return (
     <BaseContainer>
-      <div className="login container">
-        <div className="login form">
+      <div className="outlet container">
+        <div className="outlet form">
           <h2 className="site-title">Login</h2>
           {errorMessage && (
               <p className="error"> {errorMessage} </p>
@@ -80,7 +59,7 @@ const Login = props => {
             type={"password"}
             onChange={n => setPassword(n)}
           />
-          <div className="login button-container">
+          <div className="button-container">
             <Button
               disabled={!username || !password}
               width="100%"

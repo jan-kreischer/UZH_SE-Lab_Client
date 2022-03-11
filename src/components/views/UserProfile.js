@@ -44,6 +44,21 @@ User.propTypes = {
     user: PropTypes.object
 };
 
+function update(userId) {
+    const currentUserId = localStorage.getItem("currentUserId")
+    if (userId == currentUserId) {
+        return  <Button
+            width="100%"
+            onClick={() => {return}}
+        >
+            Update
+        </Button>
+    }
+    else {
+        return;
+    }
+}
+
 const UserProfile = () => {
     // We can use the `useParams` hook here to access
     // the dynamic pieces of the URL.
@@ -90,12 +105,7 @@ const UserProfile = () => {
                 <ul className="game user-list">
                     <User user={user} key={user.id}/>
                 </ul>
-                <Button
-                    width="100%"
-                    onClick={() => {return}}
-                >
-                    Update
-                </Button>
+                {update(user.id)}
             </div>
         );
     }

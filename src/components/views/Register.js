@@ -6,29 +6,7 @@ import {Button} from 'components/ui/Button';
 import 'styles/views/Register.scss';
 import BaseContainer from "components/ui/BaseContainer";
 import PropTypes from "prop-types";
-
-/*
-It is possible to add multiple components inside a single file,
-however be sure not to clutter your files with an endless amount!
-As a rule of thumb, use one file per component and only add small,
-specific components that belong to the main one in the same file.
- */
-const FormField = props => {
-    return (
-        <div className="register field">
-            <label className="register label">
-                {props.label}
-            </label>
-            <input
-                className="register input"
-                placeholder="enter here.."
-                value={props.value}
-                type={props.type}
-                onChange={e => props.onChange(e.target.value)}
-            />
-        </div>
-    );
-};
+import {FormField} from "../ui/FormField";
 
 FormField.propTypes = {
     label: PropTypes.string,
@@ -61,6 +39,7 @@ const Register = props => {
             console.log("Token: ", user.token)
             // Store the token into the local storage.
             localStorage.setItem('token', user.token);
+            localStorage.setItem('currentUserId', user.id);
 
             // register successfully worked --> navigate to the route /game in the GameRouter
             history.push(`/users`);
@@ -72,9 +51,9 @@ const Register = props => {
 
     return (
         <BaseContainer>
-            <div className="register container">
-                <div className="register form">
-                    <h2 className="site-title">Register</h2>
+            <div className="outlet container">
+                <div className="outlet form">
+                    <h2 className="outlet site-title">Register</h2>
                     {errorMessage && (
                         <p className="error"> {errorMessage} </p>
                     )}
@@ -94,7 +73,7 @@ const Register = props => {
                         type={"password"}
                         onChange={n => setPassword(n)}
                     />
-                    <div className="register button-container">
+                    <div className="button-container">
                         <Button
                             disabled={!username || !password}
                             width="100%"

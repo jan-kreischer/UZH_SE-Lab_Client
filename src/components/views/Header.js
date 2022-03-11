@@ -17,8 +17,13 @@ import {Button} from "../ui/Button";
  * @FunctionalComponent
  */
 
+const userProfileUrl = (userId) => {
+    return `/users/${userId}`
+}
+
 const Header = props => {
     const history = useHistory();
+    const currentUserId = localStorage.getItem("currentUserId");
 
     const logout = () => {
         localStorage.removeItem('token');
@@ -48,7 +53,7 @@ const Header = props => {
             <Navbar.Collapse>
                 <Nav>
                 <Nav.Link href="/users">Users</Nav.Link>
-                <Nav.Link href="/profile">Profile</Nav.Link>
+                <Nav.Link href={userProfileUrl(currentUserId)}>Profile</Nav.Link>
                 </Nav>
                 <Nav className="justify-content-end" style={{ width: "100%" }}>
                     {show_navbar_right()}

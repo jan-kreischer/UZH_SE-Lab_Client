@@ -5,7 +5,6 @@ import Login from "components/views/Login";
 import Register from "components/views/Register";
 import UserProfile from "../../views/UserProfile";
 import UserList from "components/views/UserList";
-import Header from "../../views/Header";
 
 /**
  * Main router of your application.
