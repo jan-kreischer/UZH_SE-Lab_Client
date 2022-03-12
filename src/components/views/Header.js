@@ -33,6 +33,7 @@ const Header = props => {
             const url = `/users/${currentUserId}/logout`;
             const response = await api.put(url);
             localStorage.removeItem('token');
+            localStorage.removeItem('currentUserId');
             history.push('/');
         }
         catch (error) {

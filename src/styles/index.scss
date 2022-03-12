@@ -145,6 +145,10 @@ button {
   for more information visit https://sass-lang.com/guide
  */
 
+.date-picker {
+  width: 100%;
+}
+
 .game {
   &.container {
     background: $background;

@@ -32,7 +32,7 @@ const userProfileUrl = (user) => {
 
 const User = ({user}) => (
     <div class="">
-        <FormField label="Name" value={user.name} disabled={false}/>
+        <FormField label="Name" value={user.name}/>
         <FormField label="Username" value={user.username} disabled={true}/>
         <StatusField loggedIn={user.loggedIn}/>
         <DatePickerField label="Birth Date" value={new Date(user.birthDate)} disabled={false}/>
@@ -64,6 +64,7 @@ const UserProfile = () => {
     // the dynamic pieces of the URL.
     const [user, setUser] = useState(null);
     let { userId } = useParams();
+    const isOwnPage = (localStorage.getItem("currentUserId") == userId)
 
     useEffect(() => {
         // effect callbacks are synchronous to prevent race conditions. So we put the async function inside:
